@@ -1,0 +1,5 @@
+---
+# defaults file for graylog-sidecar
+
+graylog_url: ""
+graylog_api_token: ""

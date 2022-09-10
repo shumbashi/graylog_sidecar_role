@@ -1,0 +1,17 @@
+---
+# tasks file for graylog-sidecar
+
+- name: All | Include tasks to check variables are set
+  include_tasks: check.yml
+
+- name: RedHat | Include cleanup tasks to remove old collector-sidecar
+  include_tasks: cleanup.yml
+  when: ansible_os_family == "RedHat"
+
+- name: RedHat | Include install tasks
+  include_tasks: install-RedHat.yml
+  when: ansible_os_family == "RedHat"
+
+- name: RedHat | Include customize tasks
+  include_tasks: customize.yml
+  when: ansible_os_family == "RedHat"

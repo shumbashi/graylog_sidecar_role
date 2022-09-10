@@ -1,0 +1,9 @@
+---
+- hosts: all
+  remote_user: root
+  become: true
+  vars:
+    - graylog_url: "myurl.server.ly"
+    - graylog_api_token: "mytoken"
+  roles:
+    - ../../.

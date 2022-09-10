@@ -1,0 +1,12 @@
+---
+- name: Configure graylog-sidecar - server_url
+  ansible.builtin.lineinfile:
+    path: /etc/graylog/sidecar/sidecar.yml
+    line: 'server_url: {{ graylog_url }}'
+  notify: restart graylog-sidecar
+
+- name: Configure graylog-sidecar - server_api_token
+  ansible.builtin.lineinfile:
+    path: /etc/graylog/sidecar/sidecar.yml
+    line: 'server_api_token: "{{ graylog_api_token }}"'
+  notify: restart graylog-sidecar

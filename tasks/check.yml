@@ -1,0 +1,17 @@
+- name: Test the variable graylog_url is filled. End the host if not.
+  block:
+    - name: Ending play...
+      ansible.builtin.debug:
+        msg: "graylog_url is undefined. End of host."
+    - name: Ending play...
+      ansible.builtin.meta: end_host
+  when: graylog_url is undefined or graylog_url|length == 0
+
+- name: Test the variable graylog_api_token is filled. End the host if not.
+  block:
+    - name: Ending play...
+      ansible.builtin.debug:
+        msg: "graylog_api_token is undefined. End of host."
+    - name: Ending play...
+      ansible.builtin.meta: end_host
+  when: graylog_api_token is undefined or graylog_api_token|length == 0

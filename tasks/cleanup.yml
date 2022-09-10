@@ -1,0 +1,29 @@
+---
+# Remove collector-sidecare
+# yum remove collector-sidecar
+
+- name: Stop collector-sidecar service
+  ansible.builtin.service:
+    name: collector-sidecar
+    state: stopped
+  ignore_errors: true
+
+- name: Remove collector-sidecare
+  ansible.builtin.yum:
+    name: collector-sidecar
+    state: removed
+  ignore_errors: true
+
+# Clean collector-sidecar folders
+# /etc/graylog/collector-sidecar
+# /var/cache/graylog/collector-sidecar
+# /var/log/graylog/collector-sidecar
+
+- name: Clean-up old collector-sidecar files and folders
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - /var/log/graylog/collector-sidecar
+    - /var/cache/graylog/collector-sidecar
+    - /etc/graylog/collector-sidecar

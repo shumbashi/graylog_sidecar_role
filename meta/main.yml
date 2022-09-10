@@ -1,0 +1,22 @@
+galaxy_info:
+  author: Ahmed Shibani
+  description: Ansible role to install and configure Graylog-Sidecar
+  company: Libyan Spider
+  role_name: graylog_sidecar_role
+
+  license: BSD
+
+  min_ansible_version: "2.9"
+
+  platforms:
+    - name: EL
+      versions:
+        - "7"
+
+  galaxy_tags:
+    - graylog
+
+dependencies:
+  - role: libyanspider.firewall_ansible_role
+    vars:
+      firewall_outgoing_tcp_ports: ["5045"]
