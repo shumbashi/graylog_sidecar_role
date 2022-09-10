@@ -1,7 +1,7 @@
 Graylog Sidecar Role
 =========
 
-Ansible oole to install Graylog-Sidecar replacing Collector-Sidecar on Linux servers
+Ansible role to install Graylog-Sidecar replacing Collector-Sidecar on Linux servers
 
 Tested on:
   - CentOS 7
@@ -19,8 +19,8 @@ Role Variables
 --------------
 
 The role accepts two variables:
-- graylog_url: "" # (reuired) Graylog API URL
-- graylog_api_token: "" # (required) Graylog API Token
+- `graylog_url` string (required) Graylog API URL
+- `graylog_api_token` string (required) Graylog API Token
 
 Dependencies
 ------------
