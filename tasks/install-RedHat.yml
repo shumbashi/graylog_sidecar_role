@@ -3,15 +3,16 @@
 
 - name: Download graylog-sidecar repository
   ansible.builtin.get_url:
-    url: https://packages.graylog2.org/repo/packages/graylog-sidecar-repository-1-2.noarch.rpm
-    dest: /tmp/graylog-sidecar-repository-1-2.noarch.rpm
+    url: https://packages.graylog2.org/repo/packages/graylog-sidecar-repository-1-4.noarch.rpm
+    dest: /tmp/graylog-sidecar-repository-1-4.noarch.rpm
     validate_certs: false
     force: false
 
 - name: Install graylog-sidecar repository
   ansible.builtin.yum:
-    name: /tmp/graylog-sidecar-repository-1-2.noarch.rpm
+    name: /tmp/graylog-sidecar-repository-1-4.noarch.rpm
     state: installed
+    disable_gpg_check: true
 
 - name: Install graylog-sidecar
   ansible.builtin.yum:
@@ -32,4 +33,5 @@
   ansible.builtin.yum:
     name: https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.8.1-x86_64.rpm
     state: installed
+    disable_gpg_check: true
   notify: restart graylog-sidecar
