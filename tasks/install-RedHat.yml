@@ -29,9 +29,31 @@
     name: graylog-sidecar
     enabled: true
 
-- name: Install filebeat
+- name: Create filebeat yum repository
+  ansible.builtin.copy:
+    dest: /etc/yum.repos.d/elastic.repo
+    content: |
+      [elastic-7.x]
+      name=Elastic repository for 7.x packages
+      baseurl=https://artifacts.elastic.co/packages/7.x/yum
+      gpgcheck=1
+      gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
+      enabled=1
+      autorefresh=1
+      type=rpm-md
+    mode: 0644
+
+- name: Install filebeat GPG key
+  ansible.builtin.get_url:
+    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    dest: /etc/pki/rpm-gpg/RPM-GPG-KEY-elasticsearch
+    mode: 0644
+    validate_certs: false
+    force: false
+
+- name: Install fielbeat
   ansible.builtin.yum:
-    name: https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.8.1-x86_64.rpm
+    name: filebeat
     state: installed
     disable_gpg_check: true
   notify: restart graylog-sidecar
