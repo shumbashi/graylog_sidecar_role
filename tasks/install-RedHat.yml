@@ -45,7 +45,7 @@
 
 - name: Install filebeat GPG key
   ansible.builtin.get_url:
-    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    url: https://packages.elastic.co/GPG-KEY-elasticsearch
     dest: /etc/pki/rpm-gpg/RPM-GPG-KEY-elasticsearch
     mode: 0644
     validate_certs: false
